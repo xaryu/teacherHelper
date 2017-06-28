@@ -24,50 +24,49 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
-
     .state('app', {
-    url: '/app',
-    abstract: true,
-    templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
-  })
-
-  .state('app.search', {
-    url: '/search',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/search.html'
-      }
-    }
-  })
-
-  .state('app.browse', {
-      url: '/browse',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/browse.html'
-        }
-      }
+      url: '/app',
+      abstract: true,
+      templateUrl: 'js/main/menu.html',
+      controller: 'AppCtrl'
     })
-    .state('app.playlists', {
-      url: '/playlists',
+
+    .state('app.search', {
+      url: '/search',
       views: {
         'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
+          templateUrl: 'templates/search.html'
         }
       }
     })
 
-  .state('app.single', {
-    url: '/playlists/:playlistId',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
+    .state('app.browse', {
+        url: '/browse',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/browse.html'
+          }
+        }
+    })
+    .state('app.classGroups', {
+      url: '/groups',
+      views: {
+        'menuContent': {
+          templateUrl: 'js/classGroups/classGroups.html',
+          controller: 'ClassGroupsCtrl'
+        }
       }
-    }
-  });
+    })
+
+    .state('app.group', {
+      url: '/groups/:groupId',
+      views: {
+        'menuContent': {
+          templateUrl: 'js/classGroup/classGroup.html',
+          controller: 'ClassGroupCtrl'
+        }
+      }
+    });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/groups');
 });
