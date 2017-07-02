@@ -9817,3 +9817,11 @@ a.button {
 
 .settings-btn {
   height: 20px; }
+
+.bottom-button {
+  position: fixed;
+  bottom: 20px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center; }

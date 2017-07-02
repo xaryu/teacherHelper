@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('starter.controllers').controller('ClassGroupsCtrl', function($scope, $state) {
+angular.module('starter.controllers').controller('ClassGroupsCtrl', function($scope, $state, $ionicModal) {
     $scope.classGroups = [
         { 
             name: 'Grupa 1024',
@@ -42,6 +42,20 @@ angular.module('starter.controllers').controller('ClassGroupsCtrl', function($sc
         },
         
     ]
+
+
+    $ionicModal.fromTemplateUrl('js/modals/addGroup.modal.html', {
+        scope: $scope
+    }).then(function(modal) {
+        $scope.modal = modal;
+    });
+
+
+    $scope.createGroup = function(group) {
+        debugger;
+    }
+
+
 
     $scope.openGroup = function(group) {
         return $state.go('app.classGroup', {groupId: group.id, group: group});
