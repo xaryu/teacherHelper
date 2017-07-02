@@ -6,7 +6,7 @@
 	</ion-nav-buttons>
 	<ion-content>
 		<ion-list>
-			<ion-item ng-repeat="student in group.groupMembers">
+			<ion-item ng-repeat="student in group.groupMembers" ng-click="openStudentEntry(student, group)">
         		{{student.studentName}}
 			</ion-item>
 		</ion-list>

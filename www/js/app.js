@@ -67,7 +67,19 @@ angular.module('starter', ['ionic', 'starter.controllers'])
           controller: 'ClassGroupCtrl'
         }
       }
-    });
+    })
+
+    .state('app.classGroup.student', {
+      url: '/students/{studentId}',
+      params: { student: null, group: null },
+      views: {
+        '@': {
+          templateUrl: 'js/student/student.html',
+          controller: 'StudentCtrl'
+        }
+      }
+    })
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/groups');
 });

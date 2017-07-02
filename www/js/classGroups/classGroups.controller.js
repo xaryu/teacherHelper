@@ -7,10 +7,12 @@ angular.module('starter.controllers').controller('ClassGroupsCtrl', function($sc
             id: 1, 
             groupMembers: [
                 {
-                    studentName: 'Popescu Mihai'
+                    studentName: 'Popescu Mihai',
+                    studentId: 10
                 },
                 {
-                    studentName: 'Ionescu Voda'                    
+                    studentName: 'Ionescu Voda',
+                    studentId: 11                                 
                 }
             ] 
         },
@@ -19,7 +21,8 @@ angular.module('starter.controllers').controller('ClassGroupsCtrl', function($sc
             id: 2, 
             groupMembers: [
                 {
-                    studentName: 'Ionel Andrei'
+                    studentName: 'Ionel Andrei',
+                    studentId: 12
                 }
             ] 
         },
@@ -28,10 +31,12 @@ angular.module('starter.controllers').controller('ClassGroupsCtrl', function($sc
             id: 3, 
             groupMembers: [
                 {
-                    studentName: 'Suceveanu Paul'
+                    studentName: 'Suceveanu Paul',
+                    studentId: 13              
                 },
                 {
-                    studentName: 'Mircea Voda'
+                    studentName: 'Mircea Voda',
+                    studentId: 14                    
                 }
             ] 
         },
