@@ -15,6 +15,12 @@ angular.module('starter.controllers').controller('ClassGroupCtrl', function($sco
         $scope.modal = modal;
     });
 
+    $ionicModal.fromTemplateUrl('js/modals/groupSettings.modal.html', {
+        scope: $scope
+    }).then(function(modal) {
+        $scope.settingsModal = modal;
+    });
+
     $scope.createStudent = function(student) {
         debugger;
     }
