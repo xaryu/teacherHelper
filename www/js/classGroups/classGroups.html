@@ -1,7 +1,7 @@
 <ion-view view-title="Grupe">
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="group in classGroups" href="#/app/groups/{{group.id}}">
+      <ion-item ng-repeat="group in classGroups" ng-click="openGroup(group)">
         {{group.name}}
       </ion-item>
     </ion-list>

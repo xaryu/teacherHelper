@@ -1,7 +1,14 @@
-<ion-view view-title="Grupa xxl">
-  <ion-content>
-    <ion-list>
-      
-    </ion-list>
-  </ion-content>
+<ion-view view-title={{groupName}}>
+	<ion-nav-buttons side="right">
+		<div class="settings-btn">
+			<ion-icon ios="ios-settings" md="md-settings"></ion-icon>
+		</div>
+	</ion-nav-buttons>
+	<ion-content>
+		<ion-list>
+			<ion-item ng-repeat="student in group.groupMembers">
+        		{{student.studentName}}
+			</ion-item>
+		</ion-list>
+	</ion-content>
 </ion-view>

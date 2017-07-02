@@ -58,8 +58,9 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
-    .state('app.group', {
+    .state('app.classGroup', {
       url: '/groups/:groupId',
+      params: { group: null },
       views: {
         'menuContent': {
           templateUrl: 'js/classGroup/classGroup.html',
