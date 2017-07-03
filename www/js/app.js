@@ -73,7 +73,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       url: '/students/{studentId}',
       params: { student: null, group: null },
       views: {
-        '@': {
+        'menuContent@app': {
           templateUrl: 'js/student/student.html',
           controller: 'StudentCtrl'
         }
