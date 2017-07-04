@@ -1,48 +1,6 @@
 'use strict';
 
-angular.module('starter.controllers').controller('ClassGroupsCtrl', function($scope, $state, $ionicModal) {
-    $scope.classGroups = [
-        { 
-            name: 'Grupa 1024',
-            id: 1, 
-            groupMembers: [
-                {
-                    studentName: 'Popescu Mihai',
-                    studentId: 10
-                },
-                {
-                    studentName: 'Ionescu Voda',
-                    studentId: 11                                 
-                }
-            ] 
-        },
-        { 
-            name: 'Master 354',
-            id: 2, 
-            groupMembers: [
-                {
-                    studentName: 'Ionel Andrei',
-                    studentId: 12
-                }
-            ] 
-        },
-        { 
-            name: 'Doctorat 2304',
-            id: 3, 
-            groupMembers: [
-                {
-                    studentName: 'Suceveanu Paul',
-                    studentId: 13              
-                },
-                {
-                    studentName: 'Mircea Voda',
-                    studentId: 14                    
-                }
-            ] 
-        },
-        
-    ]
-
+angular.module('starter.controllers').controller('ClassGroupsCtrl', function($scope, $state, $ionicModal, GroupsService) {
 
     $ionicModal.fromTemplateUrl('js/modals/addGroup.modal.html', {
         scope: $scope
@@ -55,9 +13,22 @@ angular.module('starter.controllers').controller('ClassGroupsCtrl', function($sc
         debugger;
     }
 
+    getGroups()
+        .then(groupsResult => {
+            $scope.classGroups = groupsResult;
+        })
+    
+    async function getGroups () {
+        const getGroupsResponse = await GroupsService.getGroupsData();
+        if(getGroupsResponse.status !==200) {
+            throw new Error('Eroare la preluarea grupelor');
+        }
+        return getGroupsResponse.json();
+    }
 
 
     $scope.openGroup = function(group) {
-        return $state.go('app.classGroup', {groupId: group.id, group: group});
+        return $state.go('app.classGroup', {groupId: group._id, group: group});
     }
+
 })  
