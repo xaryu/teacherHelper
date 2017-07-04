@@ -1,14 +1,17 @@
 <ion-view view-title="Grupe">
 	<ion-content>
-		<ion-list>
+		<ion-list can-swipe="true">
 			<ion-item ng-repeat="group in classGroups" ng-click="openGroup(group)">
+				<ion-delete-button class="ion-minus-circled"></ion-delete-button>
 				{{group.name}}
+				<ion-option-button class="button-assertive"
+                       ng-click="deleteGroup(group)">Delete
 			</ion-item>
 		</ion-list>
 	</ion-content>
 	<div class="bottom-button">
-		<button class="button button-dark" ng-click="modal.show()">
-			Importare grupă {{groups}}
+		<button class="button button-dark" ng-click="initModal()">
+			Adaugare grupă
 		</button>
 	</div>
 </ion-view>

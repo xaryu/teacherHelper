@@ -1,6 +1,6 @@
 <ion-modal-view>
     <ion-header-bar class="bar bar-header bar-dark">
-        <h1 class="title">Grupa noua</h1>
+        <h1 class="title">Grupă nouă</h1>
         <button class="button button-clear button-primary" ng-click="modal.hide()">Renunță</button>
     </ion-header-bar>
     <ion-content class="padding">
@@ -9,6 +9,20 @@
             <span class="input-label">Nume grupă</span>
             <input ng-model="newGroup.name" type="text">
         </label>
+        <label class="item item-input">
+            <span class="input-label">Număr minim prezențe</span>
+            <input ng-model="newGroup.nrMinimPrezente" type="text">
+        </label>
+        <label class="item item-input">
+            <span class="input-label">Număr teme</span>
+            <input ng-model="newGroup.nrTeme" type="text">
+        </label>
+        <label class="item item-input">
+            <span class="input-label">Număr săptămâni</span>
+            <input ng-model="newGroup.nrSaptamani" type="text">
+        </label>
+        <ion-toggle ng-model="newGroup.proiectObligatoriu" toggle-class="toggle-calm">Proiect obligatoriu</ion-toggle>
+
         <label class="item item-input">
             <span class="input-label">Link CSV</span>
             <input ng-model="newGroup.csvLink" type="text">

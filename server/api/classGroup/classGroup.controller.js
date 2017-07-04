@@ -12,16 +12,15 @@ exports.createGroup = function(req, res) {
         nrSaptamani: req.body.nrSaptamani
     });
 
-    classGroup.save(function(err) {
+    classGroup.save(function(err, group) {
         if(err) {
             res.send(err);
         }
-        res.json({message: 'Classgroup created!' });
+        res.json(group);
     });
 };
 
 exports.getGroups = function(req, res) {
-    console.log('here');
     ClassGroups.find(function(err, groups) {
         if(err) {
             res.send(err);

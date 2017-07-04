@@ -2,15 +2,33 @@
 
 angular.module('starter.controllers').controller('ClassGroupsCtrl', function($scope, $state, $ionicModal, GroupsService) {
 
-    $ionicModal.fromTemplateUrl('js/modals/addGroup.modal.html', {
-        scope: $scope
-    }).then(function(modal) {
-        $scope.modal = modal;
-    });
+    $scope.initModal = () => {
+        $ionicModal.fromTemplateUrl('js/modals/addGroup.modal.html', {
+            scope: $scope
+        }).then(function(modal) {
+            $scope.modal = modal;
+            modal.show();
+        });
+    }
 
+    $scope.createGroup = (group) => {
+        GroupsService.createGroup(group)
+            .then(responseData => {
+                $scope.classGroups.push(responseData);
+                $scope.modal.remove();
+            })
+            .catch(e => console.log(e));
+    }
 
-    $scope.createGroup = function(group) {
-        debugger;
+    $scope.deleteGroup = (group) => {
+        GroupsService.deleteGroup(group)
+            .then(responseData => {
+                const index = $scope.classGroups.indexOf(group);
+                $scope.classGroups.splice(index, 1);
+                //TODO check out why the DOM is not updating on splice
+                $scope.$apply();
+            })
+            .catch(e => console.log(e));
     }
 
     getGroups()

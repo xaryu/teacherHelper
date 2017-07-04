@@ -1,7 +1,7 @@
 angular.module('starter').service('HelpersService', function () {
     this.makeCall = (address, requestBody, errorMessage = 'Could not get data') => {
         return new Promise((resolve, reject) => {
-            makeFetch(address, requestBody)
+            this.makeFetch(address, requestBody)
             .then(res => {
                 if(res.status !== 200) {
                     return reject(new Error(errorMessage));
@@ -41,6 +41,17 @@ angular.module('starter').service('HelpersService', function () {
             headers: {
                 'Content-Type': 'application/json',
             }
+        })
+    }
+
+    this.deleteData = (address, requestBody) => {
+        return fetch(address, {
+            method: 'DELETE', 
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
         })
     }
 });
