@@ -5,43 +5,52 @@ var fs = require('fs');
 var Baby = require('babyparse');
 
 exports.createGroup = function(req, res) {
-    var classGroup = new ClassGroups({ 
-        name: req.body.name,
-        nrMinimPrezente: req.body.nrMinimPrezente,
-        proiectObligatoriu: req.body.proiectObligatoriu,
-        nrTeme: req.body.nrTeme,
-        nrSaptamani: req.body.nrSaptamani,
-        groupMembers: {}
-    });
-    var csvLink = req.body.csvLink;
-    if(csvLink) {
-        const linkEnding = csvLink.substr(csvLink.lastIndexOf('/') + 1);
-        if(linkEnding.substr(0, 4) === 'edit') {
-            csvLink = csvLink.substr(0, csvLink.lastIndexOf(linkEnding)-1);
-            csvLink+= "/export?format=csv";
-        }
+    this.parseCsv = function (body) {
+        var csvParsed = false;
+        return new Promise((resolve, reject) => {
+            var csvLink = body.csvLink;
+            if (csvLink) {
+                const linkEnding = csvLink.substr(csvLink.lastIndexOf('/') + 1);
+                if (linkEnding.substr(0, 4) === 'edit') {
+                    csvLink = csvLink.substr(0, csvLink.lastIndexOf(linkEnding) - 1);
+                    csvLink += "/export?format=csv";
+                }
+            }
+            var downloadCsv = request(csvLink);
+            downloadCsv.on('response', function (res) {
+                var stream = res.pipe(fs.createWriteStream('./' + body.name + '.' + res.headers['content-type'].split('/')[1]));
+                stream.on('finish', function () {
+                    var filePath = process.env.PWD + '/' + body.name + '.csv';
+                    var config = {
+                        header: true
+                    }
+                    var parsed = Baby.parseFiles(filePath, config);
+                    csvParsed = true;
+                    resolve(parsed.data);
+                })
+            })
+        })
     }
 
-    var downloadCsv = request(csvLink);
-    downloadCsv.on('response', function(res) {
-        var stream = res.pipe(fs.createWriteStream('./' + classGroup.name + '.' + res.headers['content-type'].split('/')[1]));
-        stream.on('finish', function() {
-            var filePath = process.env.PWD + '/' + classGroup.name + '.csv';
-            var config = {
-                header: true
-            }
-            var parsed = Baby.parseFiles(filePath, config);
-            classGroup.groupMembers = parsed.data;
+    this.parseCsv(req.body)
+        .then((parsedRes) => {
+            var classGroup = new ClassGroups({ 
+                name: req.body.name,
+                nrMinimPrezente: req.body.nrMinimPrezente,
+                proiectObligatoriu: req.body.proiectObligatoriu,
+                nrTeme: req.body.nrTeme,
+                nrSaptamani: req.body.nrSaptamani,
+                groupMembers: parsedRes
+            });            
+            classGroup.save(function(err, group) {
+                if(err) {
+                    res.send(err);
+                }
+                res.json(group);
+            }); 
         })
-    })
-
-    classGroup.save(function(err, group) {
-        if(err) {
-            res.send(err);
-        }
-        res.json(group);
-    });
 };
+
 
 exports.getGroups = function(req, res) {
     ClassGroups.find(function(err, groups) {

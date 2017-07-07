@@ -44,7 +44,6 @@ angular.module('starter.controllers').controller('ClassGroupsCtrl', function($sc
         return getGroupsResponse.json();
     }
 
-
     $scope.openGroup = function(group) {
         return $state.go('app.classGroup', {groupId: group._id, group: group});
     }
