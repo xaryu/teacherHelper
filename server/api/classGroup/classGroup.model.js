@@ -16,11 +16,15 @@ var ClassGroups = new Schema({
         type: Number,
         default: 14
     },
-    // groupMembers: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Student',
-    //     es_indexed: true
-    // }
+    groupMembers: {
+        type: Object
+    }
 })
+
+//TODO reference to students model(deep populate)
+
+// Schema.plugin(deepPopulate, {
+//     whitelist: ['student.std']
+// });
 
 module.exports = mongoose.model('Group', ClassGroups)
