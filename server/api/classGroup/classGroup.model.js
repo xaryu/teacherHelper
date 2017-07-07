@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var ClassGroups = new Schema({
+const ClassGroups = new Schema({
     name: String,
     nrMinimPrezente: Number,
     proiectObligatoriu: {
@@ -15,16 +15,13 @@ var ClassGroups = new Schema({
     nrSaptamani: {
         type: Number,
         default: 14
-    },
-    groupMembers: {
-        type: Object
     }
 })
 
-//TODO reference to students model(deep populate)
+ClassGroups.virtual('groupStudents', {
+    ref: 'Students',
+    localField: '_id',
+    foreignField: 'grupa'
+})
 
-// Schema.plugin(deepPopulate, {
-//     whitelist: ['student.std']
-// });
-
-module.exports = mongoose.model('Group', ClassGroups)
+module.exports = mongoose.model('Group', ClassGroups);

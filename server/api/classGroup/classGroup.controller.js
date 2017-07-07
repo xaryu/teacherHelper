@@ -1,8 +1,10 @@
 'use strict';
 var request = require('request');
 var ClassGroups = require('./classGroup.model');
+var Students = require('../student/student.model');
 var fs = require('fs');
 var Baby = require('babyparse');
+var _ = require('lodash');
 
 exports.createGroup = function(req, res) {
     this.parseCsv = function (body) {
@@ -40,15 +42,35 @@ exports.createGroup = function(req, res) {
                 proiectObligatoriu: req.body.proiectObligatoriu,
                 nrTeme: req.body.nrTeme,
                 nrSaptamani: req.body.nrSaptamani,
-                groupMembers: parsedRes
             });            
             classGroup.save(function(err, group) {
+                let newStudents = parsedRes.map(item => {
+                    return _.assignIn(item, {
+                        grupa: group._id
+                    })
+                })
                 if(err) {
                     res.send(err);
                 }
                 res.json(group);
+
+
+                newStudents.forEach(std => {
+                    var student = new Students({
+                        nume: std.nume,
+                        prenume: std.prenume
+                    })
+                    student.save((err, student) => {
+                        console.log(student);
+                    })
+                    if(err) {
+                        res.send(err);
+                    }
+                    res.json(student);
+                })
             }); 
         })
+        
 };
 
 
