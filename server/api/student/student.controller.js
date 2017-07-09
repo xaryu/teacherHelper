@@ -28,6 +28,8 @@ exports.editStudent = function(req, res) {
         student.prenume = req.body.prenume;
         student.nrPrezente = req.body.nrPrezente;
         student.notaProiect = req.body.notaProiect;
+        student.notaTest = req.body.notaTest;
+        student.notaProiect = req.body.notaProiect;
 
         student.save(function(err){ 
             if(err) {
