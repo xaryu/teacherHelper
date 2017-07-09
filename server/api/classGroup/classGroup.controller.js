@@ -99,13 +99,17 @@ exports.changeGroupById = function(req, res) {
         if(err) {
             res.send(err);
         }
-
         group.name = req.body.name;
+        group.nrMinimPrezente = req.body.nrMinimPrezente;
+        group.proiectObligatoriu = req.body.proiectObligatoriu;
+        group.nrTeme = req.body.nrTeme;
+        group.nrSaptamani = req.body.nrSaptamani;
+
         group.save(function(err){ 
             if(err) {
                 res.send(err);
             }
-            res.json({message: 'Group updated!' });
+            res.json(group);
         });
     });
 };

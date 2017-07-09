@@ -18,8 +18,13 @@ angular.module('starter.controllers').controller('ClassGroupCtrl', function($sco
         return getStudentsResponse.json();
     }
 
-    $scope.openStudentEntry = function(student, group) {
-        $state.go('app.classGroup.student', {studentId: student._id, student: student, groupId: group._id});
+    $scope.openSettingsModal = function() {
+        $ionicModal.fromTemplateUrl('js/modals/groupSettings.modal.html', {
+            scope: $scope
+        }).then(function(modal) {
+            $scope.settingsModal = modal;
+            $scope.settingsModal.show();
+        });
     }
 
     $ionicModal.fromTemplateUrl('js/modals/addStudent.modal.html', {
@@ -28,13 +33,19 @@ angular.module('starter.controllers').controller('ClassGroupCtrl', function($sco
         $scope.modal = modal;
     });
 
-    $ionicModal.fromTemplateUrl('js/modals/groupSettings.modal.html', {
-        scope: $scope
-    }).then(function(modal) {
-        $scope.settingsModal = modal;
-    });
-
     $scope.createStudent = function(student) {
         debugger;
+    }
+
+    $scope.saveGroup = function(group) {
+        GroupsService.editGroup(group)
+            .then((responseData) => {
+                $scope.settingsModal.remove();      
+            })
+            .catch((err) => console.log(err));
+    }
+
+     $scope.openStudentEntry = function(student, group) {
+        $state.go('app.classGroup.student', {studentId: student._id, student: student, groupId: group._id});
     }
 }); 

@@ -23,6 +23,13 @@ angular.module('starter').service('GroupsService', ['HelpersService', function (
         return HelpersService.makeCall(groupsEndpointAddress, group);
     }
 
+    this.editGroup = (group) => {
+        return new Promise((resolve, reject) => {
+            HelpersService.editData(this.getGroupEndpointWithId(group), group)
+                .then(resolve)
+        })
+    }
+
     this.deleteGroup = (group) => {
         return HelpersService.deleteData(this.getGroupEndpointWithId(group), group);
     }
