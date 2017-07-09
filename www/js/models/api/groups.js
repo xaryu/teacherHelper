@@ -12,6 +12,14 @@ angular.module('starter').service('GroupsService', ['HelpersService', function (
         )
     }
 
+    this.getGroupData = (group) => {
+        console.log('group', group);
+        return new Promise((resolve, reject) =>
+            HelpersService.fetchData(this.getGroupEndpointWithId(group), group)
+                .then(resolve)
+        )
+    }
+
     this.createGroup = (group) => {
         return HelpersService.makeCall(groupsEndpointAddress, group);
     }

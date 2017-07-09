@@ -4,8 +4,8 @@
 	</ion-nav-buttons>
 	<ion-content>
 		<ion-list>
-			<ion-item ng-repeat="student in group.groupMembers" ng-click="openStudentEntry(student, group)">
-        		{{student.studentName}}
+			<ion-item ng-repeat="student in groupStudents" ng-click="openStudentEntry(student, group)">
+        		{{student.nume}} {{student.prenume}}
 			</ion-item>
 		</ion-list>
 	</ion-content>

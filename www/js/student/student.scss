@@ -1,0 +1,9 @@
+.attendance {
+    display: flex;
+    .buttons {
+        &.buttons-right {
+            position: relative;
+            display: flex;
+        }
+    }
+}

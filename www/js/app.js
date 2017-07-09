@@ -51,7 +51,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     .state('app.classGroups', {
       url: '/groups',
       views: {
-        'menuContent': {
+        'menuContent': {  
           templateUrl: 'js/classGroups/classGroups.html',
           controller: 'ClassGroupsCtrl'
         }
