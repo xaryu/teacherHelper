@@ -9835,3 +9835,6 @@ a.button {
   .attendance .buttons.buttons-right {
     position: relative;
     display: flex; }
+
+.group-buttons.bottom-button {
+  justify-content: space-around; }
