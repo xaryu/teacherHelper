@@ -2,6 +2,7 @@
 
 angular.module('starter.controllers').controller('StudentCtrl', function($scope, $stateParams, GroupsService, $window) {
     $scope.student = $stateParams.student;
+    $scope.group = $stateParams.group;
     let groupId = $stateParams.groupId;
 
     $scope.increment = function(context) {

@@ -40,12 +40,13 @@ angular.module('starter.controllers').controller('ClassGroupCtrl', function($sco
     $scope.saveGroup = function(group) {
         GroupsService.editGroup(group)
             .then((responseData) => {
-                $scope.settingsModal.remove();      
+                console.log(responseData);
+                $scope.settingsModal.remove();
             })
             .catch((err) => console.log(err));
     }
 
      $scope.openStudentEntry = function(student, group) {
-        $state.go('app.classGroup.student', {studentId: student._id, student: student, groupId: group._id});
+        $state.go('app.classGroup.student', {studentId: student._id, student: student, group: group, groupId: group._id});
     }
 }); 
