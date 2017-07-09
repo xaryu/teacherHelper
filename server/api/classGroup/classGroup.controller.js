@@ -1,7 +1,7 @@
 'use strict';
 var request = require('request');
 var ClassGroups = require('./classGroup.model');
-var Students = require('../student/student.model');
+var Student = require('../student/student.model');
 var fs = require('fs');
 var Baby = require('babyparse');
 var _ = require('lodash');
@@ -56,9 +56,11 @@ exports.createGroup = function(req, res) {
 
 
                 newStudents.forEach(std => {
-                    var student = new Students({
+                    var student = new Student({
                         nume: std.nume,
-                        prenume: std.prenume
+                        prenume: std.prenume,
+                        grupa: std.grupa,
+                        nrAbsente: 0
                     })
                     student.save((err, student) => {
                         console.log(student);
@@ -83,13 +85,13 @@ exports.getGroups = function(req, res) {
     });
 };
 
-exports.getGroupById = function(req, res) {
-    ClassGroups.findById(req.params.group_id, function(err, group) {
-        if(err) {
-            res.send(err);
+exports.getStudentsForGroup = function(req, res) {
+    ClassGroups.findOne({_id: req.params.group_id})
+        .populate('groupStudents')
+        .exec(function(err, grupa) {
+            return res.json(grupa.groupStudents);
         }
-        res.json(group);
-    });
+    )
 };
 
 exports.changeGroupById = function(req, res) {

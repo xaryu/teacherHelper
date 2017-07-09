@@ -22,6 +22,9 @@ ClassGroups.virtual('groupStudents', {
     ref: 'Students',
     localField: '_id',
     foreignField: 'grupa'
+},{
+    toObject: { virtuals: true },
+    toJSON: { virtuals: true }
 })
 
-module.exports = mongoose.model('Group', ClassGroups);
+module.exports = mongoose.model('Groups', ClassGroups, 'Groups');

@@ -1,10 +1,19 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-const Students = new Schema({
+const Student = new Schema({
     nume: String,
     prenume: String,
-    grupa: { type: mongoose.Schema.Types.ObjectId, ref: 'Group' }
+    nrAbsente: {
+        type: Number,
+        default: 0
+    },
+    notaProiect: {
+        type: Number,
+    },
+    notaTest: Array,
+    notaTeme: Array,
+    grupa: { type: mongoose.Schema.Types.ObjectId, ref: 'Groups' }
 })
 
-module.exports = mongoose.model('Student', Students);
+module.exports = mongoose.model('Students', Student, 'Students');
