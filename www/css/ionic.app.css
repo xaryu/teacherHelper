@@ -9825,3 +9825,13 @@ a.button {
   width: 100%;
   justify-content: center;
   align-items: center; }
+
+.buttons-right {
+  position: absolute;
+  right: 0; }
+
+.attendance {
+  display: flex; }
+  .attendance .buttons.buttons-right {
+    position: relative;
+    display: flex; }

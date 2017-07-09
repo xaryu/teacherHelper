@@ -54,4 +54,15 @@ angular.module('starter').service('HelpersService', function () {
             body: JSON.stringify(requestBody)
         })
     }
+    this.editData = (address, requestBody) => {
+        console.log('adress: ', address);
+        return fetch(address, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        })
+    }
 });

@@ -60,7 +60,7 @@ exports.createGroup = function(req, res) {
                         nume: std.nume,
                         prenume: std.prenume,
                         grupa: std.grupa,
-                        nrAbsente: 0
+                        nrPrezente: 0
                     })
                     student.save((err, student) => {
                         console.log(student);

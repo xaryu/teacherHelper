@@ -13,7 +13,6 @@ angular.module('starter').service('GroupsService', ['HelpersService', function (
     }
 
     this.getGroupData = (group) => {
-        console.log('group', group);
         return new Promise((resolve, reject) =>
             HelpersService.fetchData(this.getGroupEndpointWithId(group), group)
                 .then(resolve)
@@ -26,5 +25,9 @@ angular.module('starter').service('GroupsService', ['HelpersService', function (
 
     this.deleteGroup = (group) => {
         return HelpersService.deleteData(this.getGroupEndpointWithId(group), group);
+    }
+
+    this.editStudent = (groupId, student) => {
+        return HelpersService.editData(`${groupsEndpointAddress}/${groupId}/students/${student._id}`, student);
     }
 }])

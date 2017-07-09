@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 const Student = new Schema({
     nume: String,
     prenume: String,
-    nrAbsente: {
+    nrPrezente: {
         type: Number,
         default: 0
     },
