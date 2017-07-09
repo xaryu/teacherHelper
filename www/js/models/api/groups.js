@@ -33,6 +33,10 @@ angular.module('starter').service('GroupsService', ['HelpersService', function (
     this.deleteGroup = (group) => {
         return HelpersService.deleteData(this.getGroupEndpointWithId(group), group);
     }
+    
+    this.deleteStudent = (groupId, student) => {
+        return HelpersService.deleteData(`${groupsEndpointAddress}/${groupId}/students/${student._id}`, student)
+    }
 
     this.editStudent = (groupId, student) => {
         return HelpersService.editData(`${groupsEndpointAddress}/${groupId}/students/${student._id}`, student);

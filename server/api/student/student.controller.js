@@ -40,13 +40,14 @@ exports.editStudent = function(req, res) {
     });
 };
 
-// exports.deleteStudent = function(req, res) {
-//     ClassGroups.remove({
-//         _id: req.params.group_id
-//     }, function(err, group) {
-//         if(err) {
-//             res.send(err)
-//         }
-//         res.json({message: 'Successfully deleted'});
-//     });
-// };
+exports.deleteStudent = function(req, res) {
+    console.log('deleteStudent');
+    Student.remove({
+        _id: req.params.student_id
+    }, function(err, group) {
+        if(err) {
+            res.send(err)
+        }
+        res.json({message: 'Successfully deleted'});
+    });
+};

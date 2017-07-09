@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('starter.controllers', []).controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+angular.module('starter.controllers', []).controller('AppCtrl', function($scope, $ionicModal, $timeout, $rootScope) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -27,7 +27,7 @@ angular.module('starter.controllers', []).controller('AppCtrl', function($scope,
   $scope.login = function() {
     $scope.modal.show();
   };
-
+  $rootScope.atttendingStudents = [];
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('starter.controllers').controller('ClassGroupCtrl', function($scope, $stateParams, $state, $ionicModal, GroupsService) {
+angular.module('starter.controllers').controller('ClassGroupCtrl', function($scope, $stateParams, $state, $ionicModal, GroupsService, $rootScope, $ionicListDelegate) {
     $scope.currentId = $stateParams.groupId;
     $scope.group = $stateParams.group;
     $scope.groupName = $scope.group.name;
@@ -44,6 +44,32 @@ angular.module('starter.controllers').controller('ClassGroupCtrl', function($sco
                 $scope.settingsModal.remove();
             })
             .catch((err) => console.log(err));
+    }
+
+    $scope.markAsAttending = function(student) {
+        $rootScope.atttendingStudents.push(student);
+        $ionicListDelegate.closeOptionButtons(false);
+    }
+
+    $scope.updateAttendance = function() {
+        if($rootScope.atttendingStudents.length !== 0) {
+            for(var student of $rootScope.atttendingStudents) {
+                student.nrPrezente+=1;
+                GroupsService.editStudent($scope.currentId, student)
+                .then(responseData => {
+                    console.log(responseData);
+                })
+                .catch(err => console.log(err));
+            }
+        }
+    }
+
+    $scope.deleteStudent = function(student) {
+        GroupsService.deleteStudent($scope.currentId, student)
+            .then(responseData => {
+                const index = $scope.groupStudents.indexOf(student);
+                $scope.groupStudents.splice(index, 1);
+            })
     }
 
      $scope.openStudentEntry = function(student, group) {
