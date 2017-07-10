@@ -7,7 +7,7 @@ var Student = require('./student.model');
 // };
 
 exports.getStudents = function(req, res) {
-    console.log('OANAZAVORANU');
+
 }
 
 exports.getGroups = function(req, res) {
