@@ -31,11 +31,14 @@ angular.module('starter.controllers').controller('ClassGroupCtrl', function($sco
         });
     }
 
-    $ionicModal.fromTemplateUrl('js/modals/addStudent.modal.html', {
-        scope: $scope
-    }).then(function(modal) {
-        $scope.modal = modal;
-    });
+    $scope.openAddStudentModal = function() {
+         $ionicModal.fromTemplateUrl('js/modals/addStudent.modal.html', {
+            scope: $scope
+        }).then(function(modal) {
+            $scope.modal = modal;
+            $scope.modal.show();            
+        });
+    }
 
     $scope.createStudent = function() {
         if(typeof($scope.newStudent.notaTest) == 'string') {
@@ -46,8 +49,8 @@ angular.module('starter.controllers').controller('ClassGroupCtrl', function($sco
         }
         GroupsService.createStudent($scope.group, $scope.newStudent)
             .then(responseData=> {
-                $scope.modal.remove();
                 $scope.groupStudents.push(responseData);
+                $scope.modal.remove();
             })
             .catch(err=> console.log(err))
     }
