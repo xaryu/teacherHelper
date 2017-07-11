@@ -4,6 +4,9 @@ angular.module('starter.controllers').controller('ClassGroupCtrl', function($sco
     $scope.currentId = $stateParams.groupId;
     $scope.group = $stateParams.group;
     $scope.groupName = $scope.group.name;
+    $scope.newStudent = {
+        group: null
+    };
 
     getStudents()
         .then(studentsResult => {
@@ -33,17 +36,28 @@ angular.module('starter.controllers').controller('ClassGroupCtrl', function($sco
         $scope.modal = modal;
     });
 
-    $scope.createStudent = function(student) {
-        debugger;
+    $scope.createStudent = function() {
+        if(typeof($scope.newStudent.notaTest) == 'string') {
+            $scope.newStudent.notaTest = $scope.newStudent.notaTest.replace(/[\s,]+/g, ',').split(',');
+        }
+        if(typeof($scope.newStudent.notaTeme) == 'string') {
+            $scope.newStudent.notaTeme = $scope.newStudent.notaTeme.replace(/[\s,]+/g, ',').split(',');
+        }
+        GroupsService.createStudent($scope.group, $scope.newStudent)
+            .then(responseData=> {
+                $scope.modal.remove();
+                $scope.groupStudents.push(responseData);
+            })
+            .catch(err=> console.log(err))
     }
-
+    
     $scope.saveGroup = function(group) {
         GroupsService.editGroup(group)
             .then((responseData) => {
                 console.log(responseData);
                 $scope.settingsModal.remove();
             })
-            .catch((err) => console.log(err));
+            .catch(err => console.log(err));
     }
 
     $scope.markAsAttending = function(student) {
@@ -69,6 +83,8 @@ angular.module('starter.controllers').controller('ClassGroupCtrl', function($sco
             .then(responseData => {
                 const index = $scope.groupStudents.indexOf(student);
                 $scope.groupStudents.splice(index, 1);
+                $scope.$apply();
+                $ionicListDelegate.closeOptionButtons(false);        
             })
     }
 

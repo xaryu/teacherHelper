@@ -14,7 +14,7 @@ angular.module('starter').service('GroupsService', ['HelpersService', function (
 
     this.getGroupData = (group) => {
         return new Promise((resolve, reject) =>
-            HelpersService.fetchData(this.getGroupEndpointWithId(group), group)
+            HelpersService.fetchData(this.getGroupEndpointWithId(group), group) 
                 .then(resolve)
         )
     }
@@ -34,6 +34,11 @@ angular.module('starter').service('GroupsService', ['HelpersService', function (
         return HelpersService.deleteData(this.getGroupEndpointWithId(group), group);
     }
     
+    this.createStudent = (group, student) => {
+        student.groupId = group._id;
+        return HelpersService.makeCall(`${this.getGroupEndpointWithId(group)}/students`, student);
+    }
+
     this.deleteStudent = (groupId, student) => {
         return HelpersService.deleteData(`${groupsEndpointAddress}/${groupId}/students/${student._id}`, student)
     }
