@@ -6,23 +6,28 @@
     <ion-content class="padding">
         <div class="list">
             <label class="item item-input">
-            <span class="input-label">Nume grupă</span>
-            <input ng-model="group.name" type="text">
-        </label>
+                <span class="input-label">Nume grupă</span>
+                <input ng-model="group.name" type="text">
+            </label>
             <label class="item item-input">
-            <span class="input-label">Numar minim prezente</span>
-            <input ng-model="group.nrMinimPrezente" type="text">
-        </label>
+                <span class="input-label">Numar minim prezente</span>
+                <input ng-model="group.nrMinimPrezente" type="text">
+            </label>
             <ion-toggle ng-model="group.proiectObligatoriu" toggle-class="toggle-calm">Proiect obligatoriu</ion-toggle>
             <label class="item item-input">
-            <span class="input-label">Numar teme</span>
-            <input ng-model="group.nrTeme" type="text">
-        </label>
+                <span class="input-label">Numar teme</span>
+                <input ng-model="group.nrTeme" type="text">
+            </label>
             <label class="item item-input">
-            <span class="input-label">Numar săptămâni</span>
-            <input ng-model="group.nrSaptamani" type="text">
-        </label>
-            <button class="button button-full button-dark" ng-click="saveGroup(group)">Salvează</button>
+                <span class="input-label">Numar săptămâni</span>
+                <input ng-model="group.nrSaptamani" type="text">
+            </label>
+            <label class="item item-input">
+                <textarea style="height: 180px" placeholder="Introduceți o notiță aici" ng-model="group.notita" type="text"></textarea>
+            </label>
+            <div class="button-container">
+                <button class="button button-full button-dark" ng-click="saveGroup(group)">Salvează</button>
+            </div>
         </div>
     </ion-content>
 </ion-modal-view>

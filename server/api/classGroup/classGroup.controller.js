@@ -104,6 +104,7 @@ exports.changeGroupById = function(req, res) {
         group.proiectObligatoriu = req.body.proiectObligatoriu;
         group.nrTeme = req.body.nrTeme;
         group.nrSaptamani = req.body.nrSaptamani;
+        group.notita = req.body.notita;
 
         group.save(function(err){ 
             if(err) {

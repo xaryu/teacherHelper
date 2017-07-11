@@ -15,6 +15,9 @@ const ClassGroups = new Schema({
     nrSaptamani: {
         type: Number,
         default: 14
+    },
+    notita: {
+        type: String
     }
 })
 
