@@ -7,6 +7,7 @@ angular.module('starter.controllers').controller('ClassGroupCtrl', function($sco
     $scope.newStudent = {
         group: null
     };
+    $scope.attendingStudentsLocal = [];
 
     getStudents()
         .then(studentsResult => {
@@ -62,16 +63,18 @@ angular.module('starter.controllers').controller('ClassGroupCtrl', function($sco
 
     $scope.markAsAttending = function(student) {
         $rootScope.atttendingStudents.push(student);
+        $scope.attendingStudentsLocal.push(student);
         $ionicListDelegate.closeOptionButtons(false);
     }
 
     $scope.updateAttendance = function() {
-        if($rootScope.atttendingStudents.length !== 0) {
-            for(var student of $rootScope.atttendingStudents) {
+        if($scope.attendingStudentsLocal.length !== 0) {
+            for(var student of $scope.attendingStudentsLocal) {
                 student.nrPrezente+=1;
                 GroupsService.editStudent($scope.currentId, student)
                 .then(responseData => {
-                    console.log(responseData);
+                    $scope.attendingStudentsLocal = [];
+                    $scope.$apply();
                 })
                 .catch(err => console.log(err));
             }
