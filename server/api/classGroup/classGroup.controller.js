@@ -16,6 +16,8 @@ exports.createGroup = function(req, res) {
                 if (linkEnding.substr(0, 4) === 'edit') {
                     csvLink = csvLink.substr(0, csvLink.lastIndexOf(linkEnding) - 1);
                     csvLink += "/export?format=csv";
+                } else {
+                    csvLink += "/export?format=csv";
                 }
             }
             var downloadCsv = request(csvLink);
