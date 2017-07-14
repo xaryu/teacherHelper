@@ -40,6 +40,16 @@ angular.module('starter.controllers').controller('ClassGroupCtrl', function($sco
         });
     }
 
+    $scope.openReportModal = () => {
+        $scope.settingsModal.remove();
+        $ionicModal.fromTemplateUrl('js/modals/groupReport.modal.html', {
+            scope: $scope
+        }).then(function(modal) {
+            $scope.modal = modal;
+            $scope.modal.show();            
+        });
+    }
+
     $scope.createStudent = function() {
         if(typeof($scope.newStudent.notaTest) == 'string') {
             $scope.newStudent.notaTest = $scope.newStudent.notaTest.replace(/[\s,]+/g, ',').split(',');
@@ -55,7 +65,7 @@ angular.module('starter.controllers').controller('ClassGroupCtrl', function($sco
             .catch(err=> console.log(err))
     }
     
-    $scope.saveGroup = function(group) {
+    $scope.saveGroup = (group) => {
         GroupsService.editGroup(group)
             .then((responseData) => {
                 console.log(responseData);

@@ -1,0 +1,23 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-dark">
+        <h1 class="title">Raport grupă</h1>
+        <button class="button button-clear button-primary" ng-click="modal.hide()">Renunță</button>
+    </ion-header-bar>
+    <ion-content class="padding">
+        <ion-list>
+            <ion-item style="padding-left: 0; padding-right: 0" ng-repeat="student in groupStudents">
+                <div class="row">
+                    <div class="col" style="margin: auto">
+                        <h2 class="input-label col">{{student.nume}} {{student.prenume}}</h2>
+                    </div>
+                    <div class="col">
+                        <h3>{{student.nrPrezente}} prezențe</h3>
+                        <h3>Note teme: {{student.notaTeme.toString()}}</h3>
+                        <h3>Nota teste: {{student.notaTest.toString()}}</h3>
+                        <h3>Nota proiect: {{student.notaProiect}}</h3>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-modal-view>
