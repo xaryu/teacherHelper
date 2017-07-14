@@ -13,6 +13,9 @@ const Student = new Schema({
     },
     notaTest: Array,
     notaTeme: Array,
+    notita: {
+        type: String
+    },
     grupa: { type: mongoose.Schema.Types.ObjectId, ref: 'Groups' }
 })
 

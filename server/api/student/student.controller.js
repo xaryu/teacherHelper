@@ -44,6 +44,7 @@ exports.editStudent = function(req, res) {
         student.notaProiect = req.body.notaProiect;
         student.notaTest = req.body.notaTest;
         student.notaTeme = req.body.notaTeme;
+        student.notita = req.body.notita;
 
         student.save(function(err){ 
             if(err) {
