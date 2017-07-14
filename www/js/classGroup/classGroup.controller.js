@@ -80,6 +80,17 @@ angular.module('starter.controllers').controller('ClassGroupCtrl', function($sco
         $ionicListDelegate.closeOptionButtons(false);
     }
 
+    $scope.chooseRandomStudent = () => {
+        $scope.randomStudent = $rootScope.atttendingStudents[Math.floor(Math.random() * $rootScope.atttendingStudents.length)];
+        $scope.settingsModal.remove();
+        $ionicModal.fromTemplateUrl('js/modals/randomStudent.modal.html', {
+            scope: $scope
+        }).then(function(modal) {
+            $scope.modal = modal;
+            $scope.modal.show();            
+        });
+    }
+
     $scope.updateAttendance = function() {
         if($scope.attendingStudentsLocal.length !== 0) {
             for(var student of $scope.attendingStudentsLocal) {

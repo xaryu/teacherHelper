@@ -1,0 +1,21 @@
+<ion-modal-view 
+    style="top: 35% !important;
+        right: 20% !important;
+        bottom: 40% !important;
+        left: 20% !important;
+        overflow: visible !important;
+        min-height: 240px !important;
+        width: 60% !important;">
+        <ion-header-bar class="bar bar-header bar-dark">
+            <h1 class="title">Student la întâmplare:</h1>
+        </ion-header-bar>
+        <ion-content class="padding">
+            <span ng-if="randomStudent" style="text-align: center; display: block">
+                {{randomStudent.nume}} {{randomStudent.prenume}}
+            </span>
+            <span ng-if="!randomStudent" style="text-align: center; display: block">Nu aveți prezența facută!</span>
+            <div class="button-container">
+                <button class="button button-full button-dark" ng-click="modal.remove()">Închide</button>
+            </div>
+        </ion-content>
+</ion-modal-view>
