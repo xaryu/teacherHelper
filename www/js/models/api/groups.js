@@ -1,5 +1,5 @@
 angular.module('starter').service('GroupsService', ['HelpersService', function (HelpersService) {
-    const groupsEndpointAddress = 'http://10.100.1.170:8080/api/groups';
+    const groupsEndpointAddress = 'http://localhost:8080/api/groups';
 
     this.getGroupEndpointWithId = (group) => {
         return `${groupsEndpointAddress}/${group._id}`

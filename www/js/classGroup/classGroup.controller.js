@@ -12,6 +12,7 @@ angular.module('starter.controllers').controller('ClassGroupCtrl', function($sco
     getStudents()
         .then(studentsResult => {
             $scope.groupStudents = studentsResult;
+            $scope.filteredGroupStudents = studentsResult;
         })
     
     async function getStudents () {
@@ -89,6 +90,20 @@ angular.module('starter.controllers').controller('ClassGroupCtrl', function($sco
             $scope.modal = modal;
             $scope.modal.show();            
         });
+    }
+
+    $scope.filterByAttendance = () => {
+        $scope.filteredGroupStudents = [];
+        const minClassesToAttend = $scope.group.nrMinimPrezente;
+        $scope.groupStudents.forEach(student => {
+            if(student.nrPrezente <= minClassesToAttend) {
+                $scope.filteredGroupStudents.push(student)
+            }
+        });
+    }
+
+    $scope.resetFilters = () => {
+        $scope.filteredGroupStudents = $scope.groupStudents;
     }
 
     $scope.updateAttendance = function() {

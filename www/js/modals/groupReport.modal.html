@@ -5,7 +5,7 @@
     </ion-header-bar>
     <ion-content class="padding">
         <ion-list>
-            <ion-item style="padding-left: 0; padding-right: 0" ng-repeat="student in groupStudents">
+            <ion-item style="padding-left: 0; padding-right: 0" ng-repeat="student in filteredGroupStudents">
                 <div class="row">
                     <div class="col" style="margin: auto">
                         <h2 class="input-label col">{{student.nume}} {{student.prenume}}</h2>
@@ -20,4 +20,8 @@
             </ion-item>
         </ion-list>
     </ion-content>
+    <div class="group-buttons bottom-button">
+        <button class="button button-dark" ng-click="filterByAttendance()">Prezențe insuficiente</button>
+        <button class="button button-dark" ng-click="resetFilters()">Resetează filtre</button>        
+    </div>
 </ion-modal-view>
