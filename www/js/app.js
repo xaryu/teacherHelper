@@ -31,23 +31,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       controller: 'AppCtrl'
     })
 
-    .state('app.search', {
-      url: '/search',
+    .state('app.home', {
+      url: '/home',
       views: {
         'menuContent': {
-          templateUrl: 'templates/search.html'
+          templateUrl: 'js/home/home.html',
+          controller: 'HomeCtrl'
         }
       }
     })
 
-    .state('app.browse', {
-        url: '/browse',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/browse.html'
-          }
-        }
-    })
     .state('app.classGroups', {
       url: '/groups',
       views: {
@@ -81,5 +74,5 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/groups');
+  $urlRouterProvider.otherwise('/app/home');
 });
