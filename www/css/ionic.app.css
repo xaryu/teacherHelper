@@ -9830,6 +9830,9 @@ a.button {
   position: absolute;
   right: 0; }
 
+.scroll {
+  padding-bottom: 75px; }
+
 .attendance {
   display: flex; }
   .attendance .buttons.buttons-right {
